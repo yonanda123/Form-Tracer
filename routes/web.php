@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingPage\BerandaController as LandingBerandaController;
+use App\Http\Controllers\AdminPage\BerandaController as AdminBerandaController;
+use App\Http\Controllers\UserPage\BerandaController as UserBerandaController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', [DashboardController::class,'index'])->name('get.dashboard');
+Route::get('/', [LandingBerandaController::class,'index'])->name('get.beranda');
+Route::get('/admin', [AdminBerandaController::class,'index'])->name('get.admin.beranda');
+Route::get('/user', [UserBerandaController::class,'index'])->name('get.user.beranda');
+Route::get('/login', [AuthController::class,'index'])->name('get.login');
+
