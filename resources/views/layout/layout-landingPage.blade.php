@@ -8,6 +8,8 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <title>@yield('title', 'Form Tracer')</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -100,8 +102,13 @@
                 <div class="flex h-28 items-center justify-between">
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
-                            <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                alt="Your Company">
+                            <a href="https://flowbite.com/"
+                                class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8"
+                                    alt="Flowbite Logo" />
+                                <span
+                                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Sharia Prediction</span>
+                            </a>
                         </div>
                     </div>
                     <div class="hidden md:flex md:items-center md:justify-between w-full">
@@ -114,12 +121,7 @@
                             <a href="#"
                                 class="rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:text-blue-700">Statistik</a>
                             <a href="#"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:text-blue-700">Publikasi</a>
-                            <a href="#"
                                 class="rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:text-blue-700">Faq</a>
-                            <a href="#"
-                                class="rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:text-blue-700">Isi
-                                Kuisoner</a>
                         </div>
                         <a href="{{ route('get.login') }}"
                             class="inline-block ml-3 px-3 py-1 border border-transparent text-base font-medium rounded-md shadow-2xl text-white bg-blue-500 hover:bg-blue-700">Login</a>
@@ -157,12 +159,7 @@
                     <a href="#"
                         class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-blue-700 hover:text-white">Statistik</a>
                     <a href="#"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-blue-700 hover:text-white">Publikasi</a>
-                    <a href="#"
                         class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-blue-700 hover:text-white">Faq</a>
-                    <a href="#"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-blue-700 hover:text-white">Isi
-                        Kuisoner</a>
                 </div>
             </div>
         </nav>
@@ -180,27 +177,12 @@
                         class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                         <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
                         <span
-                            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+                            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Sharia Prediction</span>
                     </a>
-                    <ul
-                        class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-                        <li>
-                            <a href="#" class="hover:underline me-4 md:me-6">About</a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-                        </li>
-                        <li>
-                            <a href="#" class="hover:underline">Contact</a>
-                        </li>
-                    </ul>
                 </div>
                 <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-                <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a
-                        href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights
+                <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a
+                        href="https://flowbite.com/" class="hover:underline">Sharia Prediction</a>. All Rights
                     Reserved.</span>
             </div>
         </footer>
