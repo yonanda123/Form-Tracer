@@ -20,7 +20,7 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('get.admin.beranda')->with('success', 'Login berhasil');
+            return redirect()->route('get.admin.dashboard')->with('success', 'Login berhasil');
         }
 
         return back()->with('error', 'Email or Password salah');

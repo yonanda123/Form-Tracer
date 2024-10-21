@@ -1,95 +1,93 @@
 @extends('layout.layout-adminPage')
 @section('title', 'Beranda')
 @section('content.admin.page')
-    <div class="max-w-full w-full bg-white rounded-lg shadow dark:bg-gray-800">
-        <div class="flex justify-between p-4 md:p-6 pb-0 md:pb-0">
-            <h5
-                class="p-5 text-xl font-bold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                Predict Stock Prices
-            </h5>
+    <h5 class="mb-3 text-xl font-bold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+        Pasar
+    </h5>
+    <div class="grid grid-cols-5 gap-4 mb-6">
+        <!-- Jakarta SE -->
+        <div class="p-4 bg-gray-100 rounded-lg text-center">
+            <h2 class="text-xl font-bold text-gray-700">Jakarta SE</h2>
+            <p class="text-3xl font-semibold text-gray-800">7,501.29</p>
+            <p class="text-red-600">-55.86 (-0.74%)</p>
         </div>
-        <div class="grid grid-cols-3 gap-4 mb-4 p-5">
-            <!-- 1D Price Box -->
-            <div class="border border-orange-500 rounded-lg p-4 text-center">
-                <h5 class="text-orange-500 text-lg font-semibold mb-2">1D Price</h5>
-                <p class="text-xl font-bold text-gray-900">Rp. {{ $oneDayPrediction[0] }}</p>
-                <p class="text-green-500 font-medium text-base">+0,5%</p>
-            </div>
 
-            <!-- 1W Price Box -->
-            <div class="border border-orange-500 rounded-lg p-4 text-center">
-                <h5 class="text-orange-500 text-lg font-semibold mb-2">1W Price</h5>
-                <p class="text-xl font-bold text-gray-900">Rp. {{ $sevenDayPrediction }}</p>
-                <p class="text-red-500 font-medium text-base">-0,15%</p>
-            </div>
-
-            <!-- 1M Price Box -->
-            <div class="border border-orange-500 rounded-lg p-4 text-center">
-                <h5 class="text-orange-500 text-lg font-semibold mb-2">1M Price</h5>
-                <p class="text-xl font-bold text-gray-900">Rp. {{ $oneMonthPrediction }}</p>
-                <p class="text-green-500 font-medium text-base">+0,74%</p>
-            </div>
+        <!-- LIQUID 45 -->
+        <div class="p-4 bg-gray-100 rounded-lg text-center">
+            <h2 class="text-xl font-bold text-gray-700">LIQUID 45</h2>
+            <p class="text-3xl font-semibold text-gray-800">931.13</p>
+            <p class="text-red-600">-8.15 (-0.87%)</p>
         </div>
-        <div id="chart" class="w-full px-2.5"></div> <!-- Elemen Chart -->
-        <div
-            class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between mt-5 p-4 md:p-6 pt-0 md:pt-0">
-            <div class="flex justify-between items-center pt-5">
-                <!-- Dropdown dan tautan lain -->
-            </div>
+
+        <!-- S&P 500 -->
+        <div class="p-4 bg-gray-100 rounded-lg text-center">
+            <h2 class="text-xl font-bold text-gray-700">S&P 500</h2>
+            <p class="text-3xl font-semibold text-gray-800">5,792.04</p>
+            <p class="text-green-600">+40.91 (+0.71%)</p>
+        </div>
+
+        <!-- USD/IDR -->
+        <div class="p-4 bg-gray-100 rounded-lg text-center">
+            <h2 class="text-xl font-bold text-gray-700">USD/IDR</h2>
+            <p class="text-3xl font-semibold text-gray-800">15,660.00</p>
+            <p class="text-green-600">+45.00 (+0.29%)</p>
+        </div>
+
+        <!-- Gold (Emas) -->
+        <div class="p-4 bg-gray-100 rounded-lg text-center">
+            <h2 class="text-xl font-bold text-gray-700">Gold (Emas)</h2>
+            <p class="text-3xl font-semibold text-gray-800">2,631.70</p>
+            <p class="text-green-600">+5.70 (+0.22%)</p>
         </div>
     </div>
 
+    <!-- Chart Section -->
+    <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-gray-800">Market Chart</h3>
+            <div class="flex space-x-2">
+                <button class="px-3 py-1 bg-gray-200 rounded text-gray-600">1 day</button>
+                <button class="px-3 py-1 bg-gray-200 rounded text-gray-600">5 days</button>
+                <button class="px-3 py-1 bg-blue-500 text-white rounded">1 month</button>
+                <button class="px-3 py-1 bg-gray-200 rounded text-gray-600">1 year</button>
+                <button class="px-3 py-1 bg-gray-200 rounded text-gray-600">5 years</button>
+                <button class="px-3 py-1 bg-gray-200 rounded text-gray-600">Max</button>
+            </div>
+        </div>
+
+        <!-- ApexCharts Chart -->
+        <div id="chart" class="w-full"></div>
+    </div>
+
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const threeMonthsTimeSeries = @json($threeMonthsTimeSeries);
-
-            const labels = threeMonthsTimeSeries.map((_, index) => {
-                const date = new Date();
-                date.setDate(date.getDate() + 7 + index);
-                return date.toLocaleDateString();
-            });
-
-            const options = {
-                chart: {
-                    type: 'line',
-                    height: '400px',
-                    width: '100%'
-                },
-                series: [{
-                    name: "3 Months Time Series",
-                    data: threeMonthsTimeSeries
-                }],
-                xaxis: {
-                    categories: labels,
-                    labels: {
-                        show: true,
-                        style: {
-                            fontFamily: "Inter, sans-serif",
-                            cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
-                        }
-                    },
-                    axisBorder: {
-                        show: false,
-                    },
-                    axisTicks: {
-                        show: false,
-                    },
-                },
-                yaxis: {
-                    labels: {
-                        formatter: function(value) {
-                            return 'Rp.' + value.toFixed(
-                                2);
-                        },
-                        style: {
-                            fontFamily: "Inter, sans-serif",
-                            cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
-                        }
-                    }
+        // ApexChart Example
+        var options = {
+            series: [{
+                name: 'Market Data',
+                data: [15000, 15100, 15200, 15050, 14900, 15300, 15400, 15600, 15700]
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
                 }
-            };
-            const chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
-        });
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                categories: ['11 Sep', '12 Sep', '13 Sep', '14 Sep', '15 Sep', '16 Sep', '17 Sep', '18 Sep', '19 Sep']
+            },
+            tooltip: {
+                x: {
+                    format: 'dd MMM'
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
     </script>
 @endsection
